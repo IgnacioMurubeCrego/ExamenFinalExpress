@@ -1,23 +1,17 @@
 // @deno-types="npm:@types/express@4"
-import { Request, Response } from "express";
-
+import { Request, Response } from "npm:express@4.18.2";
 import { Subject } from "../types.ts";
-import { SubjectModel, SubjectModelType } from "../db/subject.ts";
+
+import { SubjectModel } from "../db/subject.ts";
 import { getSubjectFromModel } from "../controllers/getSubjectFromModel.ts";
 
-export const putSubject = async (
-  req: Request<{ id: string }, {}, SubjectModelType>,
+export const getSubject = async (
+  req: Request<{ id: string }>,
   res: Response<Subject | { error: unknown }>
 ) => {
-  const id = req.params.id;
-  const { name, year, teacherID, studentsID } = req.body;
+  const {id} = req.params;
   try {
-    const subject = await SubjectModel.findByIdAndUpdate(
-      id,
-      { name, year, teacherID, studentsID },
-      { new: true, runValidators: true }
-    );
-
+    const subject = await SubjectModel.findById(id).exec();
     if (!subject) {
       res.status(404).send({ error: "Subject not found" });
       return;

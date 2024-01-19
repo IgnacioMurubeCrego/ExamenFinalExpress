@@ -1,7 +1,7 @@
 // @deno-types="npm:@types/express@4"
 import { Request, Response } from "express";
 
-import { SubjectModel, SubjectModelType } from "../db/object.ts";
+import { SubjectModel, SubjectModelType } from "../db/subject.ts";
 
 export const deleteSubject = async (
   req: Request<{ id: string }, {}>,
