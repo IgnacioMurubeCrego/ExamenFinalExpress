@@ -7,7 +7,7 @@ import { deleteSubject } from "./resolvers/deleteSubject.ts";
 import { getSubjects } from "./resolvers/getSubjects.ts";
 import { getSubject } from "./resolvers/getSubject.ts";
 
-const MONGO_URL = Deno.env.get("MONGO_URL");
+const MONGO_URL = "mongodb+srv://ignacio:<password>@cluster-finalexam.1x10vh7.mongodb.net/?retryWrites=true&w=majority";
 
 if (!MONGO_URL) {
   console.log("No mongo URL found");
