@@ -1,5 +1,5 @@
 // @deno-types="npm:@types/express@4"
-import express, {Request, Response} from "npm:express@4.18.2";
+import express, { Request, Response } from "npm:express@4.18.2";
 import mongoose from "mongoose";
 
 
@@ -14,7 +14,9 @@ await mongoose.connect(MONGO_URL);
 const app = express();
 app.use(express.json());
 app
-  .get("/", async (req: Request, res: Response) => {})
+.get("/", (_req: Request, res: Response) => {
+  res.status(200).send("Hello World!");
+})
   
 
 app.listen(4000, () => {
